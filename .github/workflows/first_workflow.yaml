@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - feature/*
+      - feature/**
 
 env:
   DEPLOYMENT_ENVIRONMENT: ${{ github.ref == 'refs/heads/main' && 'prod' || github.ref == 'refs/heads/feature/*' && 'dev' || 'unknown' }}
