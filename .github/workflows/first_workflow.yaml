@@ -23,4 +23,4 @@ jobs:
 
     - name: Deploy
       run: |
-        echo "variable: $MY_VARIABLE"
+        echo "variable: ${{ vars.MY_VARIABLE }}"
