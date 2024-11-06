@@ -1,10 +1,16 @@
 name: Hello World
 
 on: 
-  push:
-    branches:
-      - main
-      - feature/*
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Choose the deployment environment"
+        required: true
+        default: "staging"
+        type: choice
+        options:
+          - staging
+          - production
 
 env:
   DEPLOYMENT_ENVIRONMENT: ${{ github.ref == 'refs/heads/main' && 'prod' || github.ref == 'refs/heads/feature/test' && 'dev' || 'unknown' }}
@@ -21,7 +27,7 @@ jobs:
   deployment:
     # needs: build
     runs-on: ubuntu-latest
-    environment: ${{ vars.DEPLOYMENT_ENVIRONMENT }}
+    environment: ${{ github.event.inputs.environment }}
     steps:
     - name: Deploy
       run: |
