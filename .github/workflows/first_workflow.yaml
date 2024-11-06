@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - feature/**
+      - feature/*
 
 env:
   DEPLOYMENT_ENVIRONMENT: ${{ github.ref == 'refs/heads/main' && 'prod' || github.ref == 'refs/heads/feature/*' && 'dev' || 'unknown' }}
@@ -14,7 +14,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
 
     - name: Hello world
       run: echo 'Hello world!'
@@ -24,8 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ vars.DEPLOYMENT_ENVIRONMENT }}
     steps:
-    - uses: actions/checkout@v2
-
     - name: Deploy
       run: |
+        echo "github.ref: ${{ github.ref }}"
         echo "variable: ${{ vars.MY_VARIABLE }}"
