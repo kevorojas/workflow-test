@@ -7,7 +7,7 @@ on:
       - feature/*
 
 env:
-  DEPLOYMENT_ENVIRONMENT: ${{ github.ref == 'refs/heads/main' && 'prod' || github.ref == 'refs/heads/feature/**' && 'dev' || 'unknown' }}
+  DEPLOYMENT_ENVIRONMENT: ${{ github.ref == 'refs/heads/main' && 'prod' || github.ref == 'refs/heads/feature/test' && 'dev' || 'unknown' }}
 
 jobs:
   # build:
