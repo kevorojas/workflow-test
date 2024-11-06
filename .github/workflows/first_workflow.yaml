@@ -9,8 +9,8 @@ on:
         default: "staging"
         type: choice
         options:
-          - staging
-          - production
+          - dev
+          - prod
 
 env:
   DEPLOYMENT_ENVIRONMENT: ${{ github.ref == 'refs/heads/main' && 'prod' || github.ref == 'refs/heads/feature/test' && 'dev' || 'unknown' }}
