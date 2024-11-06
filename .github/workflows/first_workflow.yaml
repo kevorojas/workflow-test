@@ -6,6 +6,9 @@ on:
       - main
       - feature/*
 
+env:
+  DEPLOYMENT_ENVIRONMENT: ${{ github.ref == 'refs/heads/main' && 'prod' || github.ref == 'refs/heads/feature/*' && 'dev' || 'unknown' }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,7 +22,7 @@ jobs:
   deployment:
     needs: build
     runs-on: ubuntu-latest
-    environment: prod
+    environment: ${{ env.DEPLOYMENT_ENVIRONMENT }}
     steps:
     - uses: actions/checkout@v2
 
