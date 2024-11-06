@@ -1,0 +1,25 @@
+name: Hello World
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Hello world
+      run: echo 'Hello world!'
+
+  deployment:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Deploy
+      run: echo "variable: ${{ env.MY_VARIABLE }}""
