@@ -6,7 +6,7 @@ on:
       environment:
         description: "Choose the deployment environment"
         required: true
-        default: "staging"
+        default: "dev"
         type: choice
         options:
           - dev
@@ -16,16 +16,16 @@ env:
   DEPLOYMENT_ENVIRONMENT: ${{ github.ref == 'refs/heads/main' && 'prod' || github.ref == 'refs/heads/feature/test' && 'dev' || 'unknown' }}
 
 jobs:
-  # build:
-  #   runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-  #   steps:
+    steps:
 
-  #   - name: Hello world
-  #     run: echo 'Hello world!'
+    - name: Hello world
+      run: echo 'Hello world!'
 
   deployment:
-    # needs: build
+    needs: build
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment }}
     steps:
