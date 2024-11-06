@@ -21,7 +21,7 @@ jobs:
   deployment:
     # needs: build
     runs-on: ubuntu-latest
-    environment: dev
+    environment: ${{ vars.DEPLOYMENT_ENVIRONMENT }}
     steps:
     - name: Deploy
       run: |
